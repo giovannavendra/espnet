@@ -18,8 +18,9 @@ import configargparse
 import numpy as np
 import torch
 
-from espnet.utils.cli_utils import strtobool
-from espnet.utils.training.batchfy import BATCH_COUNT_CHOICES
+sys.path.append("../../utils")
+from cli_utils import strtobool
+from training.batchfy import BATCH_COUNT_CHOICES
 
 is_torch_1_2_plus = LooseVersion(torch.__version__) >= LooseVersion("1.2")
 

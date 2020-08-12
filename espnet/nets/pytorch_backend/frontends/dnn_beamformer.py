@@ -4,12 +4,14 @@ from typing import Tuple
 import torch
 from torch.nn import functional as F
 
-from espnet.nets.pytorch_backend.frontends.beamformer import apply_beamforming_vector
-from espnet.nets.pytorch_backend.frontends.beamformer import get_mvdr_vector
-from espnet.nets.pytorch_backend.frontends.beamformer import (
+import sys, os
+sys.path.append("frontends")
+from beamformer import apply_beamforming_vector
+from beamformer import get_mvdr_vector
+from beamformer import (
     get_power_spectral_density_matrix,  # noqa: H301
 )
-from espnet.nets.pytorch_backend.frontends.mask_estimator import MaskEstimator
+from mask_estimator import MaskEstimator
 from torch_complex.tensor import ComplexTensor
 
 is_torch_1_2_plus = LooseVersion(torch.__version__) >= LooseVersion("1.2.0")

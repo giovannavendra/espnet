@@ -2,9 +2,11 @@
 
 import numpy as np
 import torch
+import os, sys
 
-from espnet.nets.ctc_prefix_score import CTCPrefixScore
-from espnet.nets.scorer_interface import PartialScorerInterface
+sys.path.append("..")
+from ctc_prefix_score import CTCPrefixScore
+from scorer_interface import PartialScorerInterface
 
 
 class CTCPrefixScorer(PartialScorerInterface):

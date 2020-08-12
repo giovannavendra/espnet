@@ -4,8 +4,11 @@ from pytorch_wpe import wpe_one_iteration
 import torch
 from torch_complex.tensor import ComplexTensor
 
-from espnet.nets.pytorch_backend.frontends.mask_estimator import MaskEstimator
-from espnet.nets.pytorch_backend.nets_utils import make_pad_mask
+import sys, os 
+sys.path.append("frontends")
+from mask_estimator import MaskEstimator
+sys.path.append("..")
+from nets_utils import make_pad_mask
 
 
 class DNN_WPE(torch.nn.Module):

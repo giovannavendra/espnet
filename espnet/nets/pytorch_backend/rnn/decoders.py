@@ -7,20 +7,24 @@ import six
 import numpy as np
 import torch
 import torch.nn.functional as F
+import os, sys
 
 from argparse import Namespace
 
-from espnet.nets.ctc_prefix_score import CTCPrefixScore
-from espnet.nets.ctc_prefix_score import CTCPrefixScoreTH
-from espnet.nets.e2e_asr_common import end_detect
+sys.path.append("../")
+from ctc_prefix_score import CTCPrefixScore
+from ctc_prefix_score import CTCPrefixScoreTH
+from e2e_asr_common import end_detect
 
-from espnet.nets.pytorch_backend.rnn.attentions import att_to_numpy
-
-from espnet.nets.pytorch_backend.nets_utils import mask_by_length
-from espnet.nets.pytorch_backend.nets_utils import pad_list
-from espnet.nets.pytorch_backend.nets_utils import th_accuracy
-from espnet.nets.pytorch_backend.nets_utils import to_device
-from espnet.nets.scorer_interface import ScorerInterface
+sys.path.append("pytorch_backend/rnn")
+from attentions import att_to_numpy
+sys.path.append("../")
+from nets_utils import mask_by_length
+from nets_utils import pad_list
+from nets_utils import th_accuracy
+from nets_utils import to_device
+sys.path.append("../")
+from scorer_interface import ScorerInterface
 
 MAX_DECODER_OUTPUT = 5
 CTC_SCORING_RATIO = 1.5

@@ -10,7 +10,7 @@ import argparse
 from itertools import groupby
 import logging
 import math
-import os
+import os, sys
 
 import chainer
 from chainer import reporter
@@ -19,27 +19,35 @@ import numpy as np
 import six
 import torch
 
-from espnet.nets.asr_interface import ASRInterface
-from espnet.nets.e2e_asr_common import label_smoothing_dist
-from espnet.nets.pytorch_backend.ctc import ctc_for
-from espnet.nets.pytorch_backend.frontends.feature_transform import (
+sys.path.append("..")
+from asr_interface import ASRInterface
+from e2e_asr_common import label_smoothing_dist
+sys.path.append("pytorch_backend")
+from pytorch_backend.ctc import ctc_for
+sys.path.append("frontends")
+from feature_transform import (
     feature_transform_for,  # noqa: H301
 )
-from espnet.nets.pytorch_backend.frontends.frontend import frontend_for
-from espnet.nets.pytorch_backend.initialization import lecun_normal_init_parameters
-from espnet.nets.pytorch_backend.initialization import set_forget_bias_to_one
-from espnet.nets.pytorch_backend.nets_utils import get_subsample
-from espnet.nets.pytorch_backend.nets_utils import pad_list
-from espnet.nets.pytorch_backend.nets_utils import to_device
-from espnet.nets.pytorch_backend.nets_utils import to_torch_tensor
-from espnet.nets.pytorch_backend.rnn.attentions import att_for
-from espnet.nets.pytorch_backend.rnn.decoders import decoder_for
-from espnet.nets.pytorch_backend.rnn.encoders import encoder_for
-from espnet.nets.scorers.ctc import CTCPrefixScorer
-from espnet.utils.fill_missing_args import fill_missing_args
+from frontend import frontend_for
+sys.path.append("..")
+from initialization import lecun_normal_init_parameters
+from initialization import set_forget_bias_to_one
+from nets_utils import get_subsample
+from nets_utils import pad_list
+from nets_utils import to_device
+from nets_utils import to_torch_tensor
+sys.path.append("rnn")
+from attentions import att_for
+from decoders import decoder_for
+from encoders import encoder_for
+sys.path.append("../..")
+from scorers.ctc import CTCPrefixScorer
+sys.path.append("..")
+from utils.fill_missing_args import fill_missing_args
+
+sys.path.append("nets/pytorch_backend")
 
 CTC_LOSS_THRESHOLD = 10000
-
 
 class Reporter(chainer.Chain):
     """A chainer reporter wrapper."""
@@ -636,3 +644,4 @@ class E2E(ASRInterface, torch.nn.Module):
         h = to_device(self, torch.from_numpy(np.array(x, dtype=np.float32)))
         h.contiguous()
         return h, ilen
+

@@ -1,15 +1,18 @@
+
 from typing import List
 from typing import Optional
 from typing import Tuple
 from typing import Union
 
+import sys, os
 import numpy
 import torch
 import torch.nn as nn
 from torch_complex.tensor import ComplexTensor
 
-from espnet.nets.pytorch_backend.frontends.dnn_beamformer import DNN_Beamformer
-from espnet.nets.pytorch_backend.frontends.dnn_wpe import DNN_WPE
+sys.path.append("frontends")
+from dnn_beamformer import DNN_Beamformer
+from dnn_wpe import DNN_WPE
 
 
 class Frontend(nn.Module):

@@ -6,8 +6,8 @@ import six
 import torch
 import torch.nn.functional as F
 
-from espnet.nets.pytorch_backend.nets_utils import make_pad_mask
-from espnet.nets.pytorch_backend.nets_utils import to_device
+from nets_utils import make_pad_mask
+from nets_utils import to_device
 
 
 def _apply_attention_constraint(

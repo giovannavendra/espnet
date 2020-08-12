@@ -1,9 +1,11 @@
 """ASR Interface module."""
-import argparse
+import argparse, os, sys
 
-from espnet.bin.asr_train import get_parser
-from espnet.utils.dynamic_import import dynamic_import
-from espnet.utils.fill_missing_args import fill_missing_args
+sys.path.append("../../bin")
+from asr_train import get_parser
+sys.path.append("../utils")
+from dynamic_import import dynamic_import
+from fill_missing_args import fill_missing_args
 
 
 class ASRInterface:

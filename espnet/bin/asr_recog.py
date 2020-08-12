@@ -14,7 +14,9 @@ import sys
 
 import numpy as np
 
-from espnet.utils.cli_utils import strtobool
+sys.path.append("espnet/espnet/utils")
+from cli_utils import strtobool
+sys.path.append("../bin")
 
 # NOTE: you need this func to generate our sphinx doc
 
